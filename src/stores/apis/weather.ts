@@ -1,0 +1,5 @@
+export const LOGIN = '/auth/login'
+export const LOGOUT = '/auth/logout'
+export const CUSTOMER_ADD = '/user/customer/add'
+export const FORGOT_PASSWORD = '/auth/password/forgot'
+export const CHANGE_PASSWORD = '/auth/password/change'
