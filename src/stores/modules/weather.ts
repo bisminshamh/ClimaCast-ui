@@ -142,9 +142,8 @@ const actions = {
         commit('SET_WEATHER', weather)
         dispatch('fetchForecast', data.name)
       }
-    } catch (err) {
-      window.location.reload()
-      console.log(err)
+    } catch (err: any) {
+      if (err.code === 'ERR_NETWORK') alert('Network error please refresh the page')
     }
   },
   /**
