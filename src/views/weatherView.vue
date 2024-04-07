@@ -1,78 +1,43 @@
 <template>
-    <div class="min-h-screen bg-gray-100 flex">
-        <div class="px-6 m-4 py-8 bg-[#9dafb3] rounded-2xl flex flex-col gap-6 md:flex-row h-screen md:h-fit">
-            <div class="bg-[#fee1b7] rounded-2xl py-3 px-3 w-full md:h-fit text-[#fca079]">
-                <div class="flex flex-col gap-4 items-center md:text-lg text-base">
+    <div class="min-h-screen bg-gray-100 flex justify-center items-center">
+        <button @click="saveLocation"
+            class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 fixed bottom-10 right-10 z-50">
+            Save Location
+        </button>
+        <div class="py-8 bg-[#9dafb3] rounded-2xl flex flex-col md:gap-6 lg:gap-10 md:flex-row md:justify-start md:items-start w-full md:w-[90%]  xl:w-[80%]  2xl:w-[70%] bg-cover bg-center sm:m-10"
+            style="background-image: url('https://images.squarespace-cdn.com/content/57523357c2ea515ccf6c1adb/1490873569038-UDBIQ98DVVU31FTJCZKT/partly+cloudy.jpg?format=1000w&content-type=image%2Fjpeg');">
+            <div class="bg-[#fee1b7] rounded-3xl text-[#fca079] md:ml-6 my-10 md:w-[45%] sm:m-10 xs:m-10 m-5">
+                <div class="flex flex-col gap-5 items-center md:text-sm text-base p-10">
                     <h3 class="text-center text-2xl">Today</h3>
                     <div class="flex justify-center items-center gap-3">
-                        <img :src="weather?.iconUrl" alt="" width="90" />
-                        <p class="text-9xl font-small">{{ weather?.temperature }}</p>
+                        <img :src="weather?.iconUrl" alt="" width="90">
+                        <p class="text-9xl font-medium">{{ weather?.temperature }}°</p>
                     </div>
-                    <p class="text-2xl font-small">{{ weather?.description }}</p>
+                    <p class="text-2xl font-medium">{{ weather?.description }}</p>
                     <p class="text-2xl font-small">{{ weather?.name }}</p>
-                    <p class="text-2xl font-small">21 Oct 2019</p>
-                    <p class="text-2xl font-small">
+                    <p class="text-1xl font-small">{{ weather?.date }}</p>
+                    <p class="text-1xl font-small">
                         <span>Feels like {{ weather?.feelsLike }} </span>| <span>Sunset {{ weather?.sunset }}</span>
                     </p>
                 </div>
             </div>
 
-            <div class="rounded-xl flex flex-col gap-4 text-white">
-                <div class="bg-[#b8b1a1] md:px-6 px-2 rounded-xl py-3 w-fit text-xs">
-                    <div class="flex gap-5 border-b-2 pb-3">
-                        <div>
-                            <p>Now</p>
-                            <span>25</span>
-                        </div>
-                        <div>
-                            <p class="text-nowrap">2 AM</p>
-                            <span>25</span>
-                        </div>
-                        <div>
-                            <p class="text-nowrap">3 AM</p>
-                            <span>25</span>
-                        </div>
-                        <div>
-                            <p class="text-nowrap">4 AM</p>
-                            <span>25</span>
-                        </div>
-                        <div>
-                            <p class="text-nowrap">5 AM</p>
-                            <span>25</span>
-                        </div>
-                        <div>
-                            <p class="text-nowrap">Now</p>
-                            <span>25</span>
-                        </div>
-                    </div>
-                    <div class="flex gap-5 pt-3">
-                        <div>
-                            <p class="text-nowrap">Now</p>
-                            <span>25</span>
-                        </div>
-                        <div>
-                            <p class="text-nowrap">2 AM</p>
-                            <span>25</span>
-                        </div>
-                        <div>
-                            <p class="text-nowrap">3 AM</p>
-                            <span>25</span>
-                        </div>
-                        <div>
-                            <p class="text-nowrap">4 AM</p>
-                            <span>25</span>
-                        </div>
-                        <div>
-                            <p class="text-nowrap">5 AM</p>
-                            <span>25</span>
-                        </div>
-                        <div>
-                            <p class="text-nowrap">Now</p>
-                            <span>25</span>
+            <div class="rounded-xl flex flex-col gap-4 text-white my-10 md:w-[45%] sm:m-10 m-5">
+                <div class="bg-[#b8b1a1] md:px-2 lg:px-6 py-3 rounded-xl w-full md:text-xs lg:text-lg"
+                    style="background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(10px);">
+                    <div v-for="(row, index) in rows" :key="index" :class="{ 'border-t-2': index !== 0 }">
+                        <div class="flex gap-7 p-5">
+                            <div v-for="(item, i) in row" :key="i" class="flex items-center flex-col">
+                                <p>{{ item.time }}</p>
+                                <div class="flex items-center">
+                                    <img :src="item.icon" alt="Weather Icon" class="md:h3-4 md:w-4 lg:h-6 lg:w-6 mr-2">
+                                    <span>{{ item.temperature }}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col gap-3 w-[80%]">
+                <div class="flex flex-col gap-3 w-full">
                     <h3>Random Text</h3>
                     <p class="text-sm">
                         Improve him believe opinion offered met and end cheered forbode.
@@ -84,82 +49,61 @@
         </div>
     </div>
 </template>
-
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue';
-import axios from 'axios';
+/**
+ * Vue component script for displaying weather information and managing user interactions.
+ * @module WeatherDisplay
+ * @category Components
+ */
 
-// Define interface for weather data
-interface WeatherData {
-    temperature: number;
-    feelsLike: number;
-    humidity: number;
-    description: string;
-    icon: string;
-    iconUrl: string;
-    name: string;
-    sunset: string;
-}
+import { computed, onMounted, defineProps } from 'vue';
+import { useRoute } from 'vue-router';
+import { useStore } from 'vuex';
+
+// Initialize Vuex store
+const store = useStore();
+// Get current route
+const route = useRoute();
 
 // Define props
 const props = defineProps({
     location: String
 });
 
+/**
+ * Function to save the current location to user's followed locations.
+ */
+const saveLocation = () => {
+    store.dispatch('weather/addToFollow', weather.value.name);
+};
+
+// Extract location and coordinates from route and props
 const location = props.location;
-const weather = ref<WeatherData | null>(null);
-const forecast = ref<any>(null);
+const lat = route.query.lat;
+const long = route.query.long;
 
-const loading = ref(true);
-const error = ref<any>(null);
-const API_KEY = 'b9a55f097bb397041d9eb9ffb66171bd'
+// Compute weather data from Vuex store
+const weather = computed(() => store.getters['weather/weather']);
 
-watchEffect(() => {
-    async function fetchWeather() {
-        loading.value = true;
-        try {
-            const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=metric`);
-            const data = response.data;
-            // console.log(data);
-            weather.value = {
-                temperature: Math.round(data.main.temp),
-                feelsLike: Math.round(data.main.feels_like),
-                humidity: data.main.humidity,
-                description: data.weather[0].description,
-                icon: data.weather[0].icon,
-                iconUrl: `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`,
-                name: data.name,
-                sunset: new Date(data.sys.sunset * 1000).toLocaleTimeString('en-US', {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                })
-            };
-        } catch (err) {
-            error.value = 'Failed to fetch weather data';
+// Compute forecast data from Vuex store
+const forecast = computed(() => store.getters['weather/forcaste']);
+
+// Compute rows for displaying forecast in a grid
+const rows = computed(() => {
+    if (forecast.value) {
+        const numRows = Math.ceil(forecast.value.length / 5);
+        const rows = [];
+        for (let i = 0; i < numRows; i++) {
+            rows.push(forecast.value.slice(i * 5, (i + 1) * 5));
         }
-        loading.value = false;
+        return rows;
+    } else {
+        return 0;
     }
-
-    fetchWeather();
-
-    async function fetchForecast() {
-        loading.value = true;
-        try {
-            const response = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${API_KEY}&units=metric`);
-            const data = response.data.list;
-            console.log(data);
-            forecast.value = data.map((item: any) => ({
-                date: new Date(item.dt * 1000).toLocaleDateString(),
-                description: item.weather[0].description,
-                temperature: item.main.temp
-            }));
-        } catch (err) {
-            error.value = 'Failed to fetch weather data';
-        }
-        loading.value = false;
-    }
-
-    fetchForecast();
 });
 
+// Fetch weather data from API on component mount
+onMounted(() => {
+    store.dispatch('weather/fetchWeather', { lat, long, location });
+});
 </script>

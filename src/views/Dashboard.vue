@@ -1,7 +1,10 @@
 <template>
   <div class="w-screen h-screen flex">
-    <!-- Side bar -->
-    <div class="w-[400px] h-full bg-gray-200 text-white" v-show="showSide">
+    <!-- sidebar -->
+    <div
+      class="w-[60%] sm:w-[30%] md:w-[20%] z-10 fixed top-0 left-0 md:z-0 md:relative md:top-0 md:left-0 h-full bg-gray-200 text-white"
+      v-show="showSide">
+
       <div class="h-[50px] bg-gray-900 flex justify-start  items-center ">
         <div class="px-[20px]">
           <h3 class="font-bold text-xl">Dashboard</h3>
@@ -9,63 +12,31 @@
       </div>
       <div class="h-[calc(100vh-50px)] bg-gray-800 py-[20px]">
         <div class="flex flex-col justify-between h-full px-[20px] space-y-[10px]">
-          <div class=" flex flex-col justify-between space-y-[10px]">
+          <div class=" flex flex-col justify-between space-y-[10px]" @click="isSmAndDown">
             <router-link to="/home"
               class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-200 hover:text-gray-800  transition duration-400 ease-in-out">
               <svg aria-hidden="true" class="mr-2 w-[25px] h-[25px] fill-current" fill="currentColor"
                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
-                  clip-rule="evenodd"></path>
+                <title>home</title>
+                <path
+                  d="M16,8.41L11.5,3.91L4.41,11H6V12L6,19H9V13H14V19H17V11H18.59L17,9.41V6H16V8.41M2,12L11.5,2.5L15,6V5H18V9L21,12H18V20H13V14H10V20H5V12H2Z" />
               </svg>
+
+
               Home
             </router-link>
-            <router-link to="/profile"
+            <router-link to="/mail-setup"
               class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300  hover:text-gray-800 transition duration-400 ease-in-out">
               <svg aria-hidden="true" class="mr-2 w-[25px] h-[25px] fill-current" fill="currentColor"
                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <title>email</title>
                 <path
-                  d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z">
-                </path>
+                  d="M1 5H2V4H20V5H21V18H20V19H2V18H1V5M3 17H19V9H18V10H16V11H14V12H12V13H10V12H8V11H6V10H4V9H3V17M19 6H3V7H5V8H7V9H9V10H13V9H15V8H17V7H19V6Z" />
               </svg>
-              Profile
+              Mail Setup
             </router-link>
-            <router-link to="/message"
-              class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300  hover:text-gray-800 transition duration-400 ease-in-out">
-              <svg aria-hidden="true" class="mr-2 w-[25px] h-[25px] fill-current" fill="currentColor"
-                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                  d="M5 3a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V5a2 2 0 00-2-2H5zm0 2h10v7h-2l-1 2H8l-1-2H5V5z"
-                  clip-rule="evenodd"></path>
-              </svg>
-              Messages
-            </router-link>
-            <router-link to="/download"
-              class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300  hover:text-gray-800 transition duration-400 ease-in-out">
-              <svg aria-hidden="true" class="mr-2 w-[25px] h-[25px] fill-current" fill="currentColor"
-                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                  d="M2 9.5A3.5 3.5 0 005.5 13H9v2.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 15.586V13h2.5a4.5 4.5 0 10-.616-8.958 4.002 4.002 0 10-7.753 1.977A3.5 3.5 0 002 9.5zm9 3.5H9V8a1 1 0 012 0v5z"
-                  clip-rule="evenodd"></path>
-              </svg>
-              Download
-            </router-link>
+          </div>
 
-          </div>
-          <div class="h-[50px]">
-            <div>
-              <router-link to="/setting"
-                class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-gray-200 hover:bg-gray-300 hover:text-gray-800  transition duration-400 ease-in-out">
-                <svg aria-hidden="true" class="mr-2 w-[25px] h-[25px] fill-current" fill="currentColor"
-                  viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
-                    clip-rule="evenodd"></path>
-                </svg>
-                Setting
-              </router-link>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -98,56 +69,44 @@
                 <input type="text" id="voice-search" v-model="searchQuery" @input="searchCities"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Search..." required>
-                <router-link to="/" class="flex absolute inset-y-0 right-0 items-center pr-3">
+                <div class="cursor-pointer flex absolute inset-y-0 right-0 items-center pr-3"
+                  @click="getCurrentLocation">
+
                   <svg aria-hidden="true"
-                    class="w-4 h-4 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-                    fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z"
-                      clip-rule="evenodd"></path>
+                    class="w-5 h-5 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                    fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <title>crosshairs-gps</title>
+                    <path
+                      d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M3.05,13H1V11H3.05C3.5,6.83 6.83,3.5 11,3.05V1H13V3.05C17.17,3.5 20.5,6.83 20.95,11H23V13H20.95C20.5,17.17 17.17,20.5 13,20.95V23H11V20.95C6.83,20.5 3.5,17.17 3.05,13M12,5A7,7 0 0,0 5,12A7,7 0 0,0 12,19A7,7 0 0,0 19,12A7,7 0 0,0 12,5Z" />
                   </svg>
-                </router-link>
+                </div>
               </div>
             </form>
             <!-- Display search results as dropdown -->
             <ul v-if="searchResults.length"
               class="mt-2 absolute top-full bg-gray-50 border border-gray-300 rounded-md shadow-md w-full z-10">
-              <li v-for="city in searchResults" :key="city.id" @click="navigateToWeather(city.name)">
+              <li v-for="city in searchResults" :key="city.id">
                 <router-link :to="`/weather/${city.name}`" class="block px-4 py-2 hover:bg-gray-100">{{ city.name }}, {{
-      city.country }}</router-link>
+        city.country }}</router-link>
               </li>
             </ul>
             <p v-else-if="searchQuery" class="mt-2">No cities found</p>
           </div>
           <!-- User login -->
-          <div class="w-[200px] ">
-            <div class="flex items-center justify-start space-x-4" @click="toggleDrop">
-              <img class="w-10 h-10 rounded-full border-2 border-gray-50"
-                src="https://yt3.ggpht.com/hqsxh-Vnbw9OK0_X4DAWh6RkmEUVnL-82SRCyh-IKr9fIXR8zhUCRdBEwgWWL_14q_L8Piod=s108-c-k-c0x00ffffff-no-rj"
-                alt="">
-              <div class="font-semibold dark:text-white text-left">
-                <div>Madona ,Dev OP</div>
-                <div class="text-xs text-gray-500 dark:text-gray-400">Admin</div>
-              </div>
+          <div class="w-[200px] flex justify-end ">
+            <div class="cursor-pointer pt-3">
+              <svg @click="logout" aria-hidden="true" class="mr-2 w-[25px] h-[25px] fill-current" fill="currentColor"
+                viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                <title>logout</title>
+                <path
+                  d="M17 7L15.59 8.41L18.17 11H8V13H18.17L15.59 15.58L17 17L22 12M4 5H12V3H4C2.9 3 2 3.9 2 5V19C2 20.1 2.9 21 4 21H12V19H4V5Z" />
+              </svg>
             </div>
-            <!-- Drop down -->
-            <div v-show="showDropDown"
-              class="absolute right-[10px] z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-              role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-              <div class="py-1 text-left" role="none">
-                <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-                <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
-                  id="menu-item-0">Account settings</a>
-                <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
-                  id="menu-item-1">Support</a>
-                <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
-                  id="menu-item-2">License</a>
-                <form method="POST" action="#" role="none">
-                  <button type="submit" class="text-gray-700 block w-full px-4 py-2 text-left text-sm" role="menuitem"
-                    tabindex="-1" id="menu-item-3">Sign out</button>
-                </form>
-              </div>
-            </div>
+
+
+            <!-- Home
+            <button class="text-gray-700 block w-full px-4 py-2 text-left text-sm" role="menuitem"
+              tabindex="-1" id="menu-item-3">Sign out</button> -->
           </div>
         </div>
       </div>
@@ -160,18 +119,57 @@
     <!-- Main  -->
   </div>
 </template>
-
 <script setup lang="ts">
-import { ref } from 'vue';
+/**
+ * Vue component for displaying a dashboard with sidebar.
+ * @component
+ * @module Dashboard
+ * @category Components
+ * @prop {boolean} showSide - Whether to show the sidebar or not.
+ * @prop {string} searchQuery - The query string for searching cities.
+ * @prop {array} searchResults - The array containing search results.
+ * @prop {boolean} showDropDown - Whether to show the dropdown menu or not.
+ */
+import { computed, onMounted, ref } from 'vue';
 import axios from 'axios';
+import { useStore } from 'vuex'
+import router from '@/router';
 
+// Store instance
+const store = useStore()
+
+// Logout function
+const logout = () => {
+  store.dispatch('auth/LOGOUT')
+};
+
+const API_KEY = computed(() => store.getters['auth/API_KEY']);
+
+
+// Run the sidebar toggle function on component mount for small screens
+onMounted(() => {
+
+  const apiKey = localStorage.getItem('apiKey');
+  if (!apiKey) {
+    // Make an API call to get the API key
+    store.dispatch('auth/APIKEY')
+  }
+
+  if (window.innerWidth <= 768) {
+    toggleSideBar();
+  }
+});
+
+// Search query ref
 const searchQuery = ref('');
-const searchResults = ref([]);
-const API_KEY = 'b9a55f097bb397041d9eb9ffb66171bd'
 
+// Search results ref
+const searchResults = ref<any>([]);
+
+// Search cities function
 async function searchCities() {
   try {
-    const response = await axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${searchQuery.value}&limit=10&appid=${API_KEY}`);
+    const response = await axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${searchQuery.value}&limit=10&appid=${API_KEY.value}`);
     searchResults.value = response.data;
   } catch (error) {
     console.error('Error fetching cities:', error);
@@ -179,19 +177,52 @@ async function searchCities() {
   }
 }
 
+// Dropdown state
 let showDropDown = ref(false);
+
+// Sidebar state
 let showSide = ref(true);
 
-
+// Sidebar toggle function
 const toggleSideBar = () => {
   showSide.value = !showSide.value
 }
+
+// Dropdown toggle function
 const toggleDrop = () => {
   showDropDown.value = !showDropDown.value
-
 }
+
+// Get current location function
+const getCurrentLocation = async () => {
+  try {
+    // Get current location using Geolocation API
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        // You can perform further actions with latitude and longitude
+        router.push({ name: 'weather', params: { location: 'CurrentLocation' }, query: { lat: latitude, long: longitude } })
+      });
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+      // Handle unsupported browser case
+    }
+  } catch (error) {
+    console.error("Error getting current location:", error);
+    // Handle error if necessary
+  }
+}
+
+const isSmAndDown = () => {
+  const screenWidth = window.innerWidth;
+  if (screenWidth <= 768) toggleSideBar()
+};
+
 </script>
+
 <style>
+/* Styles go here */
 @media (min-width: 1024px) {
   .about {
     min-height: 100vh;
