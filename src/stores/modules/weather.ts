@@ -8,6 +8,7 @@ import {
   GET_EMAILS_SUBJECTS
 } from '../apis/weather'
 import { GRAPHQL_ENDPOINT } from '@/stores/apis/common'
+const corsproxy = 'https://cors-anywhere.herokuapp.com/http://'
 
 import type { ActionContext } from 'vuex'
 
@@ -112,9 +113,9 @@ const actions = {
       let API = ''
 
       if (lat && long)
-        API = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${rootState.auth.apiKey}&units=metric`
+        API = `${corsproxy}api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${rootState.auth.apiKey}&units=metric`
       else
-        API = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${rootState.auth.apiKey}&units=metric`
+        API = `${corsproxy}api.openweathermap.org/data/2.5/weather?q=${location}&appid=${rootState.auth.apiKey}&units=metric`
 
       const response = await axios.get(API)
       const data = response.data
@@ -124,7 +125,7 @@ const actions = {
         humidity: data.main.humidity,
         description: data.weather[0].description,
         icon: data.weather[0].icon,
-        iconUrl: `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`,
+        iconUrl: `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`,
         name: data.name,
         sunset: new Date(data.sys.sunset * 1000).toLocaleTimeString('en-US', {
           hour: '2-digit',
@@ -143,7 +144,10 @@ const actions = {
         dispatch('fetchForecast', data.name)
       }
     } catch (err: any) {
-      if (err.code === 'ERR_NETWORK') alert('Network error please refresh the page')
+      if (err.code === 'ERR_NETWORK') {
+        window.location.reload()
+        alert('Network error please refresh the page')
+      }
     }
   },
   /**
@@ -154,7 +158,7 @@ const actions = {
   async fetchForecast({ commit, rootState }: ActionContext<any, any>, place: string) {
     try {
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/forecast?q=${place}&appid=${rootState.auth.apiKey}&units=metric`
+        `${corsproxy}api.openweathermap.org/data/2.5/forecast?q=${place}&appid=${rootState.auth.apiKey}&units=metric`
       )
       const data = response.data.list
 
@@ -185,7 +189,7 @@ const actions = {
       const forecast = forecastForToday.map((item: any) => ({
         time: item.dt_txt.split(' ')[1].substring(0, 5), // Extract time HH:MM
         temperature: item.main.temp,
-        icon: `https://openweathermap.org/img/wn/${item.weather[0].icon}.png`
+        icon: `http://openweathermap.org/img/wn/${item.weather[0].icon}.png`
       }))
       commit('SET_FORCASTE', forecast)
     } catch (err) {

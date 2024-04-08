@@ -87,7 +87,7 @@
               class="mt-2 absolute top-full bg-gray-50 border border-gray-300 rounded-md shadow-md w-full z-10">
               <li v-for="city in searchResults" :key="city.id">
                 <router-link :to="`/weather/${city.name}`" class="block px-4 py-2 hover:bg-gray-100">{{ city.name }}, {{
-        city.country }}</router-link>
+                  city.country }}</router-link>
               </li>
             </ul>
             <p v-else-if="searchQuery" class="mt-2">No cities found</p>
@@ -169,7 +169,7 @@ const searchResults = ref<any>([]);
 // Search cities function
 async function searchCities() {
   try {
-    const response = await axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${searchQuery.value}&limit=10&appid=${API_KEY.value}`);
+    const response = await axios.get(`https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/geo/1.0/direct?q=${searchQuery.value}&limit=10&appid=${API_KEY.value}`);
     searchResults.value = response.data;
   } catch (error) {
     console.error('Error fetching cities:', error);

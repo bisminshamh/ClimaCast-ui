@@ -62,7 +62,9 @@ const actions = {
         query: LOGIN,
         variables: { email, password }
       })
-
+      if (response.data.errors[0].message === 'User not found') {
+        alert('User not registered')
+      }
       if (response.data.data.loginUser) {
         commit('SET_TOKEN', { token: response.data.data.loginUser, email: email })
         dispatch('APIKEY')
